@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { Link, Route, Switch } from "wouter";
+import Login from "./login/Login";
+import SpeechRecognitionJ  from "./pages/SpeechRecognitionJ";
 
-function App() {
+import "./App.css";
+
+const HomePage = React.lazy(() => import("./pages/Home"));
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <Suspense fallback={null}>
+          <section className="App-content">
+              <Switch>
+                <Route component={HomePage} path="/" />
+                <Route component={Login} path="/login" />
+              </Switch>
+          </section>
+        </Suspense>
+      </div>
   );
 }
-
-export default App;
