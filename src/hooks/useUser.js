@@ -15,6 +15,9 @@ export default function useUser () {
         if(jwt===true){
           console.log(jwt);
           window.sessionStorage.setItem('jwt', jwt)
+          window.sessionStorage.setItem('usuario', data.usuario)
+          window.sessionStorage.setItem('documento',  data.documento)
+          window.sessionStorage.setItem('password',  data.password)
           setState({loading: false, error: false })
           setJWT(jwt)
         }else{

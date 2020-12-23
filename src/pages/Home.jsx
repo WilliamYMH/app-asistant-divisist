@@ -58,7 +58,10 @@ export default function SignIn(onHome) {
     formData['value'] = value
     API.post(`api/v1.0/get-nota-by-voice`, formData)
       .then(res => {
-        if (!res.data.succes) return;
+        if (!res.data.succes) {
+          speak({ text: 'Materia no encontrada, intentalo de nuevo.', voice, rate, pitch })
+          return;
+        }
         return res.data.result
       }).then(res => {
         setNota(res)
@@ -82,7 +85,12 @@ export default function SignIn(onHome) {
   }, [isLogged, navigate, onHome])
 
   const getMaterias = () => {
-    return API.get(`api/v1.0/get-notas-materias`)
+    
+    return API.post(`api/v1.0/get-notas-materias`, {
+      usuario: window.sessionStorage.getItem('usuario'),
+      documento: window.sessionStorage.getItem('documento'),
+      password: window.sessionStorage.getItem('password')
+    })
       .then(res => {
         setData(res.data.result)
         console.log(res.data)
