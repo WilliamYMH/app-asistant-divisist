@@ -2,7 +2,7 @@
 
 
 ## url:
-https://poetic-freedom-232719.uc.r.appspot.com/login
+https://poetic-freedom-232719.uc.r.appspot.com
 
 ## Available Scripts
 
